@@ -1,0 +1,44 @@
+﻿@model RPBDlab3_Netkachev_Ustinov.Models.Customers
+
+@{
+    ViewData["Title"] = "Редактирование покупателя";
+}
+
+<h1 class="text-center">Редактировать</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="mb-3">
+                <label asp-for="CustomerName" class="control-label"></label>
+                <input asp-for="CustomerName" class="form-control" />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="CityId" class="control-label"></label>
+                <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId"></select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-center">
+    <a asp-action="Index" class="btn btn-outline-primary btn-lg">Назад к списку</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

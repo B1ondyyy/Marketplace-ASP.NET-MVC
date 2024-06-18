@@ -1,0 +1,33 @@
+﻿@model RPBDlab3_Netkachev_Ustinov.Models.Brands
+
+@{
+    ViewData["Title"] = "Добавление бренда";
+}
+
+<h1 class="text-center">Добавить</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="BrandName" class="control-label"></label>
+                <input asp-for="BrandName" class="form-control" />
+                <span asp-validation-for="BrandName" class="text-danger"></span>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Создать</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-center">
+    <a asp-action="Index" class="btn btn-outline-primary btn-lg">Назад к списку</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

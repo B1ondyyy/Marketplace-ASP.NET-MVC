@@ -1,0 +1,74 @@
+﻿@model IEnumerable<RPBDlab3_Netkachev_Ustinov.Models.Cities>
+
+@{
+    ViewData["Title"] = "Города";
+}
+
+<h1>Города</h1>
+
+<p>
+    <a class="btn btn-primary btn-sm" asp-action="Create">Добавить</a>
+</p>
+<form id="searchForm" asp-action="Index">
+    <div class="input-group md-form form-sm form2 pl-0">
+        <input id="searchString" name="searchString" class="form-control my-0 py-1 red-border" type="text" placeholder="Введите текст" aria-label="Search" value="" />
+        <div class="input-group-append">
+        </div>
+        <button type="submit" class="btn btn-secondary">Поиск</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CityNameSortParam"]">@Html.DisplayNameFor(model => model.CityName)</a>
+            </th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CityName)</td>
+                <td>
+                    <a class="btn btn-light btn-sm" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("#searchForm").submit(function () {
+                localStorage.setItem("searchString1", $("#searchString").val());
+            });
+
+            var savedSearchString = localStorage.getItem("searchString1");
+
+            if (savedSearchString) {
+                $("#searchString").val(savedSearchString);
+            }
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.7/signalr.min.js"></script>
+
+    <script>
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl("/updateHub") // Путь к хабу
+            .build();
+
+        connection.on("SendUpdateNotification", function () {
+            location.reload(true);
+        });
+
+        connection.start().catch(function (err) {
+            return console.error(err.toString());
+        });
+    </script>
+}

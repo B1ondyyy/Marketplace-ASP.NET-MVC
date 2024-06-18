@@ -1,0 +1,39 @@
+﻿@model RPBDlab3_Netkachev_Ustinov.Models.Sellers
+
+@{
+    ViewData["Title"] = "Редактирование продавца";
+}
+
+<h1 class="text-center">Редактировать</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="mb-3">
+                <label asp-for="SellerName" class="control-label"></label>
+                <input asp-for="SellerName" class="form-control" />
+                <span asp-validation-for="SellerName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="CompanyId" class="control-label"></label>
+                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+                <span asp-validation-for="CompanyId" class="text-danger"></span>
+            </div>
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-center">
+    <a asp-action="Index" class="btn btn-outline-primary btn-lg">Назад к списку</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

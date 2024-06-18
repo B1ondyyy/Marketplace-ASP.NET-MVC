@@ -1,0 +1,54 @@
+﻿@model RPBDlab3_Netkachev_Ustinov.Models.Products
+
+@{
+    ViewData["Title"] = "Редактирование товара";
+}
+
+<h1 class="text-center">Редактировать</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="mb-3">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Weight" class="control-label"></label>
+                <input asp-for="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="BrandId" class="control-label"></label>
+                <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+                <span asp-validation-for="BrandId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SellerId" class="control-label"></label>
+                <select asp-for="SellerId" class="form-control" asp-items="ViewBag.SellerId"></select>
+                <span asp-validation-for="SellerId" class="text-danger"></span>
+            </div>
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-center">
+    <a asp-action="Index" class="btn btn-outline-primary">Вернуться к списку</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

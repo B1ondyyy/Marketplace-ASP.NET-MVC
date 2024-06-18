@@ -1,0 +1,59 @@
+﻿@model RPBDlab3_Netkachev_Ustinov.Models.Products
+
+@{
+    ViewData["Title"] = "Добавление товара";
+}
+
+<h1 class="text-center">Добавить</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="mb-3">
+                <label asp-for="ProductName" class="control-label"></label>
+                <div>
+                    <input asp-for="ProductName" class="form-control" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Weight" class="control-label"></label>
+                <div>
+                    <input asp-for="Weight" class="form-control" />
+                    <span asp-validation-for="Weight" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Amount" class="control-label"></label>
+                <div>
+                    <input asp-for="Amount" class="form-control" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="BrandId" class="control-label"></label>
+                <div>
+                    <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SellerId" class="control-label"></label>
+                <div>
+                    <select asp-for="SellerId" class="form-control" asp-items="ViewBag.SellerId"></select>
+                </div>
+            </div>
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Добавить</button>
+            </div>
+            <div class="mb-3 text-center">
+                <a asp-action="Index" class="btn btn-outline-primary">Вернуться к списку</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

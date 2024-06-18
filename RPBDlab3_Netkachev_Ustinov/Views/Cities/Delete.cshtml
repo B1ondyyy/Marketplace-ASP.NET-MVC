@@ -1,0 +1,27 @@
+﻿@model RPBDlab3_Netkachev_Ustinov.Models.Cities
+
+@{
+    ViewData["Title"] = "Удаление города";
+}
+
+<h1 class="text-center">Удалить</h1>
+
+<h3 class="text-center">Вы уверены, что хотите удалить это?</h3>
+<div class="text-center">
+    <h4>Город</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CityName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CityName)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger btn-lg">Удалить</button> |
+        <a asp-action="Index" class="btn btn-outline-primary btn-lg">Назад к списку</a>
+    </form>
+</div>

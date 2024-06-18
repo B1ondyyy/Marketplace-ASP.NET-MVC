@@ -1,0 +1,64 @@
+﻿@model RPBDlab3_Netkachev_Ustinov.Models.Orders
+
+@{
+    ViewData["Title"] = "Редактирование заказа";
+}
+
+<h1 class="text-center">Редактировать</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="mb-3">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ProductId" class="control-label"></label>
+                <select asp-for="ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="PickupPointId" class="control-label"></label>
+                <select asp-for="PickupPointId" class="form-control" asp-items="ViewBag.PickupPointId"></select>
+                <span asp-validation-for="PickupPointId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="OrderStatusId" class="control-label"></label>
+                <select asp-for="OrderStatusId" class="form-control" asp-items="ViewBag.OrderStatusId"></select>
+                <span asp-validation-for="OrderStatusId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="AmountOfProducts" class="control-label"></label>
+                <input asp-for="AmountOfProducts" class="form-control" />
+                <span asp-validation-for="AmountOfProducts" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="OrderDate" class="control-label"></label>
+                <input asp-for="OrderDate" class="form-control" />
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DeliveryDate" class="control-label"></label>
+                <input asp-for="DeliveryDate" class="form-control" />
+                <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-center">
+    <a asp-action="Index" class="btn btn-outline-primary btn-lg">Назад к списку</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
